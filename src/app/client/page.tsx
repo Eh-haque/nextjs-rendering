@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 interface IUser {
@@ -22,12 +23,32 @@ const Client = () => {
       });
   }, []);
 
-  if (isLoading) return <p className="text-center">Loading...</p>;
+  if (isLoading)
+    return (
+      <div className="flex justify-between items-center p-10">
+        <p>Loading...</p>
+        <Link
+          className="px-6 py-2 rounded-xl shadow-lg bg-sky-300/20 backdrop-blur-sm"
+          href="/server"
+        >
+          Server
+        </Link>
+      </div>
+    );
   if (!data) return <p className="text-center">No profile data</p>;
 
   return (
-    <div className="container mx-auto py-10">
-      <p className="text-5xl text-center mb-5">Client</p>
+    <div className="container mx-auto p-10">
+      <div className="flex justify-between items-center">
+        <p className="text-5xl text-center mb-5">Client</p>
+
+        <Link
+          className="px-6 py-2 rounded-xl shadow-lg bg-sky-300/20 backdrop-blur-sm"
+          href="/server"
+        >
+          Server
+        </Link>
+      </div>
       <div className="grid grid-cols-3 gap-4">
         {data?.map((user, index) => (
           <div

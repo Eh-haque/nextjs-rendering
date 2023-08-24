@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 interface IUser {
@@ -28,8 +29,17 @@ const Server = async () => {
   const data: IUser[] = await getData();
 
   return (
-    <div className="container mx-auto py-10">
-      <p className="text-5xl text-center mb-5">Server</p>
+    <div className="container mx-auto p-10">
+      <div className="flex justify-between items-center">
+        <p className="text-5xl text-center mb-5">Server</p>
+        <Link
+          className="px-6 py-2 rounded-xl shadow-lg bg-sky-300/20 backdrop-blur-sm"
+          href="/client"
+        >
+          Client
+        </Link>
+      </div>
+
       <div className="grid grid-cols-3 gap-4">
         {data?.map((user, index) => (
           <div
